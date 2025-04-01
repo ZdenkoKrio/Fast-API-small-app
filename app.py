@@ -59,3 +59,12 @@ def delete_item(item_id: int):
         return {"message": "Item deleted"}
 
     return {"error": "Item not found"}, 404
+
+
+@app.head("/items/{item_id}")
+def head_item(item_id: int):
+    item = fake_items_db.get(item_id)
+    if item:
+        return {"item_id": item_id}
+
+    return {"error": "Item not found"}, 404

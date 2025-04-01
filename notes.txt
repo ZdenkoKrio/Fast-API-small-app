@@ -29,3 +29,7 @@ curl -X PATCH \
 
 curl -X DELETE \
 'http://127.0.0.1:8000/items/1'
+
+curl -I HEAD \
+'http://127.0.0.1:8000/items/1'
+
