@@ -1,0 +1,21 @@
+curl -X 'POST' \
+'http://127.0.0.1:8000/items/' \
+-H 'Content-Type: application/json' \
+-d '{
+  "name": "Laptop",
+  "description": "A high-end laptop",
+  "price": 1200.99,
+  "tax": 100.5
+}'
+
+
+
+curl -X 'PUT' \
+'http://127.0.0.1:8000/items/1' \
+-H 'Content-Type: application/json' \
+-d '{
+  "name": "Updated Laptop",
+  "description": "Updated description",
+  "price": 1300.00,
+  "tax": 120.5
+}'
