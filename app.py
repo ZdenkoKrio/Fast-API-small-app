@@ -5,6 +5,8 @@ from item import Item
 
 app = FastAPI()
 
+fake_items_db = {}
+
 
 @app.get("/")
 def read_root():
@@ -12,15 +14,25 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+def read_item(item_id: int):
+    item = fake_items_db.get(item_id)
+    if item:
+        return {"item_id": item_id, "item": item}
+
+    return {"error": "Item not found"}, 404
 
 
 @app.post("/items/")
 def create_item(item: Item):
-    return {"message": "Item created", "item": item}
+    item_id = len(fake_items_db) + 1
+    fake_items_db[item_id] = item
+    return {"item_id": item_id, "item": item}
 
 
 @app.put("/items/{item_id}")
 def update_item(item_id: int, item: Item):
-    return {"message": "Item updated", "item_id": item_id, "item": item}
+    if item_id in fake_items_db:
+        fake_items_db[item_id] = item
+        return {"item_id": item_id, "item": item}
+
+    return {"error": "Item not found"}, 404
