@@ -50,3 +50,12 @@ def partial_update_item(item_id: int, item: Item):
         return {"item_id": item_id, "item": existing_item}
 
     return {"error": "Item not found"}, 404
+
+
+@app.delete("/items/{item_id}")
+def delete_item(item_id: int):
+    if item_id in fake_items_db:
+        del fake_items_db[item_id]
+        return {"message": "Item deleted"}
+
+    return {"error": "Item not found"}, 404
