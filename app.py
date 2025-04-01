@@ -73,3 +73,8 @@ def head_item(item_id: int):
 @app.trace("/items/{item_id}")
 def trace_item(item_id: int):
     return {"trace": f"Request for item {item_id} received successfully"}
+
+
+@app.options("/items/{item_id}")
+def options_item(item_id: int):
+    return {"allowed_methods": ["GET", "PUT", "DELETE", "PATCH", "HEAD", "TRACE"]}
