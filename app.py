@@ -68,3 +68,8 @@ def head_item(item_id: int):
         return {"item_id": item_id}
 
     return {"error": "Item not found"}, 404
+
+
+@app.trace("/items/{item_id}")
+def trace_item(item_id: int):
+    return {"trace": f"Request for item {item_id} received successfully"}
