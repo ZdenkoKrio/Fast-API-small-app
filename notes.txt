@@ -1,11 +1,11 @@
-curl -X 'POST' \
+curl -X POST \
 'http://127.0.0.1:8000/items/' \
 -H 'Content-Type: application/json' \
 -d '{
   "name": "Laptop",
-  "description": "A high-end laptop",
-  "price": 1200.99,
-  "tax": 100.5
+  "description": "High-end gaming laptop",
+  "price": 1200.00,
+  "tax": 150.00
 }'
 
 
@@ -18,4 +18,11 @@ curl -X 'PUT' \
   "description": "Updated description",
   "price": 1300.00,
   "tax": 120.5
+}'
+
+curl -X PATCH \
+'http://127.0.0.1:8000/items/1' \
+-H 'Content-Type: application/json' \
+-d '{
+  "price": 1400.00
 }'
